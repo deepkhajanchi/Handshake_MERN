@@ -1,6 +1,10 @@
 var express= require("express");
 var bodyParser= require("body-parser");
 var cookieParser= require('cookie-parser');
+var session = require('express-session');
+const connectDB= require ('./DB/connection');
+
+connectDB();
 
 var cors= require('cors');
 var app= express();
@@ -37,7 +41,8 @@ app.use((req, res, next)=> {
     next();
   });
 
-// student Routing
+
+/* student Routing
 var student_login= require('.API/Student/student_login.js');
 var student_signup= require('.API/Student/student_signup.js');
 
@@ -53,5 +58,6 @@ app.use('/student_signup',student_signup);
 app.use('/company_login',company_login);
 app.use('/company_signup',company_signup);
 
+*/
 app.listen(3001);
-console.log("Server is listening on port 3001");
+console.log("Server is listening on port 3001 ...");
