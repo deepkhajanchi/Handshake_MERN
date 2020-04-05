@@ -6,6 +6,10 @@ const connectDB= require ('./DB/connection');
 
 connectDB();
 
+var passport= require('passport');
+console.log("initializing passport auth...");
+//app.use(passport.initialize());
+
 var cors= require('cors');
 var app= express();
 
@@ -42,18 +46,21 @@ app.use((req, res, next)=> {
   });
 
 
-/* student Routing
-var student_login= require('.API/Student/student_login.js');
-var student_signup= require('.API/Student/student_signup.js');
+//student Routing
+var student_login= require('./API/Student/student_login');
+var student_signup= require('./API/Student/student_signup');
 
+/*
 // company Routing
 var company_login= require('.API/Company/company_login.js');
 var company_signup= require('.API/Company/company_signup.js');
+*/
 
 // student route config
 app.use('/student_login',student_login);
 app.use('/student_signup',student_signup);
 
+/*
 // company route config
 app.use('/company_login',company_login);
 app.use('/company_signup',company_signup);

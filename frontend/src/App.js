@@ -1,7 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
+import {BrowserRouter} from 'react-router-dom';
 import './App.css';
+import Main from './components/Main';
 
+//App Component
+class App extends Component {
+  render() {
+    return (
+      //Use Browser Router to route to different pages
+      <BrowserRouter>
+        <div>
+          {/* App Component Has a Child Component called Main*/}
+          <Main/>
+        </div>
+      </BrowserRouter>
+    );
+  }
+}
+//Export the App component so that it can be used in index.js
+
+export default App;
+/*
 function App() {
   return (
     <div className="App">
@@ -22,5 +41,4 @@ function App() {
     </div>
   );
 }
-
-export default App;
+*/
