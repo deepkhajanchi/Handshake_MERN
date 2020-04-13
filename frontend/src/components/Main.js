@@ -9,6 +9,7 @@ import Studentlanding from './student/studentlanding';
 import Studentmessages from './student/messages';
 import Studentevents from './student/events';
 import Studentjobs from './student/jobpostings';
+import JobNav from './student/jobnav';
 import Studentprofile from './student/studentprofile';
 import Studentsearch from './student/studentsearch';
 
@@ -29,6 +30,7 @@ class Main extends Component {
                     <Route path="/studentlanding" component={Studentlanding}/>
                     <Route path="/messages" component={Studentmessages}/>
                     <Route path="/events" component={Studentevents}/>
+                    <Route path="/jobnav" component={JobNav}/>
                     <Route path="/jobpostings" component={Studentjobs}/>
                     <Route path="/studentprofile" component={Studentprofile}/>
                     <Route path="/studentsearch" component={Studentsearch}/>
