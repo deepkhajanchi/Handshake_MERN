@@ -4,12 +4,16 @@ import {Link} from 'react-router-dom';
 import cookie from 'react-cookies';
 import {Redirect} from 'react-router';
 import Navbar from './navbar';
+import EventNav from './eventnav';
 
 
 class Studentevents extends Component{
 render(){
     return(
-        <Navbar/>
+        <div>
+            <Navbar/>
+            <EventNav/>
+        </div>
     );
 }
 }

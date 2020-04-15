@@ -210,7 +210,7 @@ class Registerform extends Component {
                                         <label>Email Address</label>
                                         <div className="form-group string required user_email">
                                             <div className="col-md-12">
-                                                Please use your school email
+                                                Please use your school email<br/>
                                             <input onChange={this.emailIDChangeHandler} className="form-control tt-hint" name="emailID" type="email" placeholder="Email" required />
                                             </div>
                                         </div>

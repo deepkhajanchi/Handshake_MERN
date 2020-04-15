@@ -31,7 +31,7 @@ class StudentLogin extends Component{
       )
     }
 
-      emailChangeHandler = (e)=>{
+    emailChangeHandler = (e)=>{
         this.setState({
             email: e.target.value
         })
@@ -72,10 +72,15 @@ class StudentLogin extends Component{
   
     render(){
       let redirectVar=null;
+      let alertElement= null;
       if(cookie.load('cookie')){
       //|| sessionStorage.getItem('user'))
         console.log("login into cookie", this.state);
         redirectVar=<Redirect to="/landingpage" />
+      }
+
+      if(this.props.isLoggedIn!= null && !this.props.isLoggedIn){
+        alertElement= <p className='alert alert-danger'>Invalid Credentials</p>
       }
     return(
       <div className="login-v2-container">
@@ -84,27 +89,32 @@ class StudentLogin extends Component{
           <div className="centered-container">
           
           <div className="col-md-12 margin-bottom">
+            <div className="emailclass">
                 <label>Email Address</label>
                    <div className="form-group string required user_email">
                        <div className="col-md-12">
-                           Please use your school email
+                           Please use your schoolemail
                            <input onChange={this.emailChangeHandler} className="form-control tt-hint" type="email" placeholder="Email" required />
                         </div>
                     </div>
+            </div>
           </div>
           <br></br>
           <div className="col-md-12 margin-bottom">
+            <div className="passwordclass">
                 <label>Password</label>
                       <div className="form-group string required user_email">
                         <div className="col-md-12">
                            <input onChange={this.passwordChangeHandler} className="form-control tt-hint" type="password" placeholder="Password" required />
                         </div>
                       </div>
+                      </div>
           </div>
           <br>
           </br>
           <div className="sso-button">
                 <button onClick={this.submitLogin} className="btn btn btn-success"> Sign In</button>
+                {alertElement}
           </div>
           <div><h4>{this.state.error}</h4></div>
           </div>

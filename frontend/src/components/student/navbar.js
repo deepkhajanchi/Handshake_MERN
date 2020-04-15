@@ -111,13 +111,13 @@ class Navbar extends Component{
 
                                 <div className="dropdown pull-right styl__dropdown___3v4V2">
                                  
-                                  <button className="account-dropdown" aria-label="navigation modal button" aria-haspopup="true" aria-expanded="false" class="styl__dropdown-button___1ECNT dropdown-toggle" data-toggle="dropdown" type="button">
+                                  <button className="account-dropdown-nav" aria-label="navigation modal button" aria-haspopup="true" aria-expanded="false" className="styl__dropdown-button___1ECNT-nav dropdown-toggle" data-toggle="dropdown" type="button">
                                     
                                       <Avatar size="50px" round={true} name="MT"/>
                                     
                                   </button>
                                   
-                                  <div className="dropdown-menu styl__dropdown-menu___bD8sz styl__fade___kx_5J" aria-labelledby="account-dropdown" role="menu">
+                                  <div className="dropdown-menu-nav styl__dropdown-menu___bD8sz-nav styl__fade___kx_5J-nav" aria-labelledby="account-dropdown" role="menu">
                                         <Link to="/studentprofile">My Profile</Link>
                                          <Link to="/resume">Resume</Link>
                                          <Link to="/applications">Applications </Link>

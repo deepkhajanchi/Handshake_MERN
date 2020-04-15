@@ -114,8 +114,9 @@ p{
 
 label {
     display: inline-block;
+    margin-bottom: 1px;
     max-width: 100%;
-    margin-bottom: 5px;
+    
     font-weight: 700;
     color: black;
     padding-left: inherit;

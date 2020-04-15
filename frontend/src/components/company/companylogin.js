@@ -29,7 +29,7 @@ class CompanyLogin extends Component{
       )
     }
 
-      emailIDChangeHandler = (e)=>{
+    emailIDChangeHandler = (e)=>{
         this.setState({
             emailID: e.target.value
         })

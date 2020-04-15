@@ -11,7 +11,6 @@ import cookie from 'react-cookies';
 import {Redirect} from 'react-router';
 import Navbar from './navbar';
 
-
 class Studentprofile extends Component{
     constructor(props){
         super(props);
@@ -20,29 +19,45 @@ class Studentprofile extends Component{
         }
     }
 render(){
-    if(this.state.isLogin === true){
+    let redirectVar= null;
+  /* if(!cookie.load("cookie")){
+       redirectVar=<Redirect to="/" />
+   }
+   */
     return(
         <div>
-        <Navbar/>
-        <div className="profilebody">
-            <div className="leftbody">
-                <UserInfoCard />
-                <SkillCard />
-                <BasicDetailsCard />
-            </div>
-            <div className="rightbody">
-                <CareerObjCard />
-                <EducationCard />
-                <ExperienceCard />
-            </div>
-        </div>
-
+            <Navbar/>
+                <div>
+                    <div>
+                        <div>
+                            <div className= "style__container___15r1p style__medium___2PHCb">
+                                <div className= "style__profile___26D5X">
+                                    <div>
+                                        <div className="row style__profile-row___KAiYi">
+                                            <div className="col-md-4">
+                                                <UserInfoCard />
+                                                <SkillCard />
+                                                <BasicDetailsCard />
+                                            </div>
+                                        </div>
+                                            <div className="col-md-8">
+                                                <CareerObjCard />
+                                                <EducationCard />
+                                                <ExperienceCard />
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </div>
     );
-    }else if(this.state.isLogin === false){
-        return(<Redirect to="/" />)
     }
+    //else if(this.state.isLogin === false){
+      //  return(<Redirect to="/" />)
+    //}
 }
-}
+
 
 export default Studentprofile;
