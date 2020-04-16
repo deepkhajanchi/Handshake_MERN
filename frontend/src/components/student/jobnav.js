@@ -6,8 +6,14 @@ import '../../Styles/jobNav.css';
 
 class JobNav extends Component{
     render(){
+        let redirectVar= null;
+        if(!cookie.load("SID")){
+            redirectVar = <Redirect to="/" />
+        }
         return(
+           
 <div className="secondary-nav style__secondary-nav___2Hvda" data-hook="secondary-nav">
+{redirectVar}
 <div data-hook="container" className="style__container___15r1p style__large___3HKaH style__fitted___2ndoo">
     <div className="style__secondary-nav-content___2zGe0">
         <h2 className="style__heading___29i1Z style__extra-large___PY8Kd style__fitted___3L0Tr">

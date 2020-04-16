@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SingleSkill from './singleSkill';
 import cookie from "react-cookies";
 import axios from 'axios';
 
@@ -78,7 +79,7 @@ class SkillCard extends Component{
                     <tr>
                         <td>
                            
-                             <div>{this.state.skillArray.map(single => <SingleSkill key={single.SkillID} item={single} />)}</div> */
+                             <div>{this.state.skillArray.map(single => <SingleSkill key={single.SkillID} item={single} />)}</div>
                             <div>
                                 <button style={{ marginTop: '20px' }} className="btn btn-primary"
                                     onClick={this.handleToggle}>Add Skill</button>

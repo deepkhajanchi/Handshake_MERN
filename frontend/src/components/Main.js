@@ -15,6 +15,12 @@ import Applications from './student/applications';
 
 import CompanyRegister from './company/companyregister';
 import CompanyLogin from './company/companylogin';
+import CompanyNav from './company/companyNav';
+import CompanyProfile from './company/companyprofile';
+import CompanyJobs from './company/companyJobs';
+import CompanyEvents from './company/companyEvents';
+import CompanyStudents from './company/companyStudents';
+import OtherStudent from './company/companyStudentsevents';
 
 
 //Create a Main Component
@@ -38,10 +44,16 @@ class Main extends Component {
                     <Route path="/studentsearch" component={Studentsearch}/>
                     <Route path="/messages" component={Studentmessages}/>
                     <Route path="/studentprofile" component={Studentprofile}/>
+                    <Route path="/" component={Studentprofile}/>
 
 		            <Route path="/companyregister" component={CompanyRegister}/>
                     <Route path="/companylogin" component={CompanyLogin}/>
-                   
+                    <Route path="/companyNav" component={CompanyNav}/>
+                    <Route path="/companyProfile" component={CompanyProfile}/>
+                    <Route path="/companyJobs" component={CompanyJobs}/>
+                    <Route path="/companyEvents" component={CompanyEvents}/>
+                    <Route path="/companyStudents" component={CompanyStudents}/>
+                    <Route path="/companyStudentsevents" component={OtherStudent}/>                  
                 
             </div>
         );

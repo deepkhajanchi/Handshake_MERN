@@ -1,72 +1,36 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import SingleExperience from './singleExperience';
-axios.defaults.withCredentials = true;
 
-class ExperienceCard extends Component {
+class SingleExperience extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            experienceArray: [],
-            ID: '',
-            companyName: '',
-            title: '',
-            location: '',
-            startDate: '',
-            endDate: '',
-            description: '',
-            addFlag: false
+            ID: this.props.item.ID,
+            SID: localStorage.getItem("ID"),
+            companyName: this.props.item.companyName,
+            title: this.props.item.title,
+            location: this.props.item.location,
+            startDate: this.props.item.startDate,
+            endDate: this.props.item.endDate,
+            description: this.props.item.description,
+            editFlag: false
         }
+        this.handleCancel = this.handleCancel.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.handleToggle = this.handleToggle.bind(this);
+        this.handleEdit = this.handleEdit.bind(this);
         this.handleSave = this.handleSave.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
-    componentWillMount() {
-        axios.get('http://localhost:3001/getExperience', { params: { ID: localStorage.getItem("ID") } })
-            .then(response => {
-                console.log("Status Code : ", response.status);
-                console.log('response data', response.data);
-                this.setState({
-                    experienceArray: this.state.experienceArray.concat(response.data)
-                })
-            })
-            .catch(error => {
-                console.log(error);
-            })
-    }
-
-    handleToggle = () => {
-        console.log('addflag after add button: before toggling', this.state.addFlag)
-        if (this.state.addFlag === true) {
-            this.setState({
-                addFlag: false
-            })
-
-        } else {
-            this.setState({
-                addFlag: true
-            })
-        }
-        console.log('addflag after add button: after toggling', this.state.addFlag)
-    }
-
-    handleSave = (e) => {
-        e.preventDefault();
+    handleDelete = () => {
         let data = {
-            ID: localStorage.getItem("ID"),
-            companyName: this.state.companyName,
-            title: this.state.title,
-            location: this.state.location,
-            startDate: this.state.startDate,
-            endDate: this.state.endDate,
-            description: this.state.description
+            ID: this.state.ID
         }
-        console.log('pressed save button', data)
-        axios.post('http://localhost:3001/addExperience', data)
+        console.log('handling delete experience', data)
+        axios.post('http://localhost:3001/deleteExperience', data)
             .then(response => {
                 console.log("Status Code : ", response.status);
                 this.setState({
-                    addFlag: true
+                    editFlag: false
                 })
             })
             .catch(error => {
@@ -78,10 +42,68 @@ class ExperienceCard extends Component {
             [e.target.name]: e.target.value
         })
     }
+    handleEdit = () => {
+        this.setState({
+            editFlag: true
+        })
+    }
+    handleCancel = () => {
+        this.setState({
+            editFlag: false
+        })
+    }
+    handleSave = (e) => {
+        // e.preventDefault();
+        let data = {
+            ID: this.state.ID,
+            SID: localStorage.getItem("ID"),
+            companyName: this.state.companyName,
+            title: this.state.title,
+            location: this.state.location,
+            startDate: this.state.startDate,
+            endDate: this.state.endDate,
+            description: this.state.description
+        }
+        console.log("data in single experience", data);
+        axios.post('http://localhost:3001/updateExperience', data)
+            .then(response => {
+                console.log("Status Code : ", response.status);
+
+                this.setState({
+                    editFlag: false
+                })
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
     render() {
-        let educationElement = null;
-        if (this.state.addFlag === true) {
-            educationElement =
+        let singleExp = null;
+        if (this.state.editFlag === false) {
+            singleExp =
+                <div>
+                    <table>
+                        <tbody><tr>
+                            <td>As a {this.state.title}</td>
+                            <td align="right" rowspan="4"><button onClick={this.handleEdit} className="btn btn-primary btn-xs">Edit</button><br />
+                                <button onClick={this.handleDelete} className="btn btn-danger btn-xs">Delete</button>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td> At {this.state.companyName}, Located at {this.state.location}</td>
+                            </tr>
+                            <tr>
+                                <td> From {this.state.startDate} to {this.state.endDate}</td>
+                            </tr>
+                            <tr>
+                                <td>Description: {this.state.description}</td>
+                            </tr>
+                            <br />
+                        </tbody>
+                    </table>
+                </div>
+        } else {
+            singleExp =
                 <div>
                     <form className="container">
                         <input
@@ -139,36 +161,19 @@ class ExperienceCard extends Component {
                             onChange={this.handleChange}
                             required />
                         <br />
-                        <button style={{ marginTop: '20px' }} className="btn btn-danger" onClick={this.handleToggle}>Cancel</button>
+                        <button style={{ marginTop: '20px' }} className="btn btn-danger" onClick={this.handleCancel}>Cancel</button>
                         <button style={{ marginTop: '20px', marginLeft: '20px' }} className="btn btn-success" onClick={this.handleSave}>Save</button>
-
                     </form>
-                </div>
-        } else {
-            educationElement =
-                <div>
-                    <tr>
-                        <td>
-                            {this.state.experienceArray.map(single => <SingleExperience key={single.ID} item={single} />)}
-                            <div><button style={{ marginTop: '20px' }} className="btn btn-primary" onClick={this.handleToggle}>Add Experience</button></div>
-
-                        </td>
-                    </tr>
-
                 </div>
         }
         return (
-            <div className="container">
-                <label>Experience</label>
-                <table className="table table-borderless">
-                    <tbody>
-
-                        {educationElement}
-                    </tbody>
-                </table>
+            <div>
+                <div key={this.props.item.ID}>
+                </div>
+                {singleExp}
             </div>
         );
     }
 }
 
-export default ExperienceCard;
+export default SingleExperience;

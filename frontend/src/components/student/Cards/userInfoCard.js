@@ -44,7 +44,7 @@ class UserInfoCard extends Component{
     handleSave=(e)=>{
         e.preventDefault();
         this.props.studentUpdateContactInfo({
-            cookie: cookie.load("cookie"),
+            SID: cookie.load("SID"),
             email: document.getElementById("email").value,
             phone: document.getElementById("phone").value
         });

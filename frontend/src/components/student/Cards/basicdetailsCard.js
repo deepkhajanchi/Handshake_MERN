@@ -17,7 +17,7 @@ class BasicDetailsCard extends Component{
     componentWillMount(){
         this.props.studentGetBasicDetails();
         let data= {
-            cookie: cookie.load("cookie")
+            SID: cookie.load("SID")
         }
         axios(
             {
@@ -44,7 +44,7 @@ class BasicDetailsCard extends Component{
     }
     handleSave=()=>{
         this.props.studentUpdateBasicDetails({
-            cookie: cookie.load("cookie"),
+            SID: cookie.load("SID"),
             name: document.getElementById("name").value,
             city: document.getElementById("city").value,
             school: document.getElementById("school").value,
@@ -120,7 +120,7 @@ class BasicDetailsCard extends Component{
                     <div>
                         <img src={this.state.profilePic} style={{ height: '150px', weight: '100px' }}></img>
                         <form action="http://localhost:3001/updateProfilePic" method="POST" encType='multipart/form-data' >
-                            <input style={{ display: "none" }} name='SID' value={cookie.load("cookie")}></input>
+                            <input style={{ display: "none" }} name='SID' value={cookie.load("SID")}></input>
                             <input type='file' name='profilePic' id='profilePic'></input>
                             <button className='btn btn-primary' type='submit'>Save</button>
                         </form>
