@@ -1,30 +1,41 @@
 var mongoose= require("mongoose");
 
-const JobpostingSchema= new mongoose.Schema({
-    title:{
-        type: String
+var jobApplicant = new mongoose.Schema({
+    studentID: { type: String },
+    status: { type: String }
+  });
+
+var JobpostingSchema= new mongoose.Schema({
+    jobTitle:{
+        type: String,
+        required: true
     },
-    postingdate:{
-        type: Date,
-        default: Date.now,
-    },
-    deadline:{
+    postingDate:{
         type: Date
     },
-    joblocation:{
+    applicationDeadline:{
+        type: String
+    },
+    jobLocation:{
         type: String
     },
     salary:{
-        type: Number
-    },
-    jobdesc:{
         type: String
     },
-    jobcategory:{
+    jobDescription:{
+        type: String
+    },
+    jobCategory:{
+        type: String
+    },
+    jobApplicants:{
+        type: Array
+    },
+    companyId:{
         type: String
     }
 })
-
+  
 var jobs= mongoose.model('job',JobpostingSchema);
 module.exports={
     jobs, JobpostingSchema

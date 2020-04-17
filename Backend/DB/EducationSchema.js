@@ -1,10 +1,12 @@
 var mongoose= require('mongoose');
 
 const EducationSchema= new mongoose.Schema({
-    collegename:{
-        type: String
+    _id: mongoose.Schema.Types.ObjectId,
+    collegeName:{
+        type: String,
+        required: true
     },
-    collegelocation:{
+    location:{
         type: String
     },
     degree:{
@@ -13,11 +15,11 @@ const EducationSchema= new mongoose.Schema({
     major:{
         type: String
     },
-    passingyear:{
+    yearOfpassing:{
         tye:String
     },
     cgpa:{
-        type: String
+        type: Number
     }
 })
 

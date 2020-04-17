@@ -1,22 +1,23 @@
 var mongoose= require('mongoose');
 
 const ExperienceSchema= new mongoose.Schema({
-    companyname:{
+    _id: mongoose.Schema.Types.ObjectId,
+    companyName:{
         type: String
     },
-    jobtitle:{
+    location:{
         type: String
     },
-    companylocation:{
+    title:{
         type: String
     },
-    startdate:{
+    startDate:{
         type: Date
     },
     endDate:{
         type: Date
     },
-    workdesc:{
+    description:{
         type: String
     }
 })

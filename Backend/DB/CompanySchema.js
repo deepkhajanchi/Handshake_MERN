@@ -1,7 +1,7 @@
 var mongoose= require("mongoose");
 
-const CompanySchema= new mongoose.Schema({
-    companyname:{
+var CompanySchema= new mongoose.Schema({
+    companyName:{
         type: String,
         required: true
     },
@@ -9,7 +9,7 @@ const CompanySchema= new mongoose.Schema({
         type:String,
         required:true
     },
-    password:{
+    companyPassword:{
         type:String,
         required:true
     },
@@ -25,14 +25,23 @@ const CompanySchema= new mongoose.Schema({
         type: String,
         required:true
     },
-    companydesc:{
+    description:{
         type: String
     },
-    contact:{
+    phoneNumber:{
         type: String
     },
-    profilepic:{
+    websiteUrl:{
+        type:String
+    },
+    companyProfilepic:{
         type: String
+    },
+    jobs: { 
+        type: Array
+    },
+    events: { 
+        type: Array
     }
 })
 

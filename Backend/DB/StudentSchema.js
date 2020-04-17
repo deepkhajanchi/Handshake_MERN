@@ -1,9 +1,9 @@
-const mongoose= require('mongoose');
+var mongoose= require('mongoose');
 
 var Education= require('./EducationSchema');
 var Experience= require('./ExperienceSchema');
 
-const StudentSchema= new mongoose.Schema({
+var StudentSchema= new mongoose.Schema({
     firstname: {
         type: String,
         required: true
@@ -17,16 +17,28 @@ const StudentSchema= new mongoose.Schema({
         match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
         required: true
     },
-    password: {
+    studentPassword: {
         type: String,
         required: true
     },
-    collegename: {
+    collegeName: {
         type: String,
         required: true
+    },
+    graduationYear: { 
+        type: String
+    },
+    studentProfilePic:{
+        type:String
     },
     dob:{
-        type: Date
+        type: String
+    },
+    careerObjective:{
+        type: String
+    },
+    skillSet:{
+        type: String
     },
     city:{
         type: String
@@ -37,7 +49,7 @@ const StudentSchema= new mongoose.Schema({
     country:{
         type:String
     },
-    careerobj:{
+    phoneNumber:{
         type: String
     },
     education:{
@@ -46,18 +58,13 @@ const StudentSchema= new mongoose.Schema({
     experience:{
         type: [Experience.ExperienceSchema]
     },
-    email:{
-        type: String
+    registeredEvents:{ 
+        type: Array
     },
-    phone:{
-        type: String
+    jobApplications:{
+        type: Array
     },
-    skillset:{
-        type: String
-    },
-    profpic:{
-        type:String
-    }
+
 });
 
 var students= mongoose.model('student',StudentSchema);
