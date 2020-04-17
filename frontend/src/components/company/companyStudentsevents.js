@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CompanyNav from '../Navbar/companyNav';
+import CompanyNav from './companyNav';
 import axios from 'axios';
 import { Link, Redirect } from "react-router-dom";
 import cookie from "react-cookies";
@@ -53,7 +53,7 @@ class OtherStudent extends Component {
     render() {
         let redirectVar = null;
         if (!cookie.load('CID')) {
-            redirectVar = <Redirect to="/companySignIn" />;
+            redirectVar = <Redirect to="/companylogin" />;
         }
         let educationElement = this.state.educationDetails.map(education => {
             return (
@@ -89,7 +89,7 @@ class OtherStudent extends Component {
                         <div style={{ textAlign: 'center' }}>
                             <div className='row'>
                                 <div className='col-4'>
-                                    <img style={{ height: '130px', weight: '90px' }} src={this.state.student.profilePicUrl}></img>
+                                    <img style={{ height: '130px', weight: '90px' }} alt="studentsearchimg" src={this.state.student.profilePicUrl}></img>
                                     {/* <p>Profile Picture will go here</p> */}
                                 </div>
                                 <div className='col'>

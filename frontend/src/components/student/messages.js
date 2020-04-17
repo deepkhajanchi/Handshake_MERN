@@ -6,12 +6,14 @@ import {Redirect} from 'react-router';
 import Navbar from './navbar';
 
 
-class Studentmessages extends Component{
+class StudentMessages extends Component{
 render(){
     return(
+        <div>
         <Navbar/>
+        </div>
     );
 }
 }
 
-export default Studentmessages;
+export default StudentMessages;

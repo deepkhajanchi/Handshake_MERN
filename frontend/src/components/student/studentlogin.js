@@ -3,10 +3,12 @@ import '../../Styles/studentlogin.css';
 import Logo1 from '../../Images/handshake_loginlogo.svg';
 import Logo3 from '../../Images/handshake_logindesign1.svg';
 import Logo5 from '../../Images/handshake_logindesign.svg';
+import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import cookie from 'react-cookies';
 import {Redirect} from 'react-router';
+import {studentLogin} from '../../js/actions/loginAction';
 
 //Define a Login Component
 class StudentLogin extends Component{
@@ -68,12 +70,13 @@ class StudentLogin extends Component{
               })
             }
         });
+        this.props.studentLogin(data);
     }
   
     render(){
       let redirectVar=null;
       let alertElement= null;
-      if(cookie.load('cookie')){
+      if(cookie.load('SID')){
       //|| sessionStorage.getItem('user'))
         console.log("login into cookie", this.state);
         redirectVar=<Redirect to="/landingpage" />
@@ -158,5 +161,12 @@ class StudentLogin extends Component{
     );
     }
   }
+
+function mapStateToProps(state){
+  return {
+    isLoggedIn: state.Login.isLoggedIn
+  };
+}  
+
 //export Loginform Component
-export default StudentLogin;
+export default connect(mapStateToProps, {studentLogin})(StudentLogin);

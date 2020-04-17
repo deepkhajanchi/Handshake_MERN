@@ -12,6 +12,9 @@ import Studentsearch from './student/studentsearch';
 import Studentmessages from './student/messages';
 import Studentprofile from './student/studentprofile';
 import Applications from './student/applications';
+import UpcomingEvents from './student/upcomingevents';
+import RegisteredEvents from './student/registeredevents';
+
 
 import CompanyRegister from './company/companyregister';
 import CompanyLogin from './company/companylogin';
@@ -21,6 +24,7 @@ import CompanyJobs from './company/companyJobs';
 import CompanyEvents from './company/companyEvents';
 import CompanyStudents from './company/companyStudents';
 import OtherStudent from './company/companyStudentsevents';
+import CompanyMessages from './company/companyMessages';
 
 
 //Create a Main Component
@@ -44,7 +48,8 @@ class Main extends Component {
                     <Route path="/studentsearch" component={Studentsearch}/>
                     <Route path="/messages" component={Studentmessages}/>
                     <Route path="/studentprofile" component={Studentprofile}/>
-                    <Route path="/" component={Studentprofile}/>
+                    <Route path="/upcomingevents" component={UpcomingEvents}/>
+                    <Route path="/registeredevents" component={RegisteredEvents}/>
 
 		            <Route path="/companyregister" component={CompanyRegister}/>
                     <Route path="/companylogin" component={CompanyLogin}/>
@@ -53,8 +58,9 @@ class Main extends Component {
                     <Route path="/companyJobs" component={CompanyJobs}/>
                     <Route path="/companyEvents" component={CompanyEvents}/>
                     <Route path="/companyStudents" component={CompanyStudents}/>
-                    <Route path="/companyStudentsevents" component={OtherStudent}/>                  
-                
+                    <Route path="/companyStudentsevents" component={OtherStudent}/> 
+                    <Route path="/companyMessages" component={CompanyMessages}/> 
+                     
             </div>
         );
     }

@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
+axios.defaults.withCredentials = true;
+
 class SingleSKill extends Component{
     constructor(props){
         super(props);
@@ -19,7 +21,7 @@ class SingleSKill extends Component{
             ID: this.state.ID,
             SID: localStorage.getItem("ID")
         }
-        axios.post('',data)
+        axios.post('http://localhost:3001/deleteSkill',data)
         .then(response=>{
             console.log("Status Code:", response.status)
             this.setState({
@@ -52,12 +54,12 @@ class SingleSKill extends Component{
     handleSave=(e)=>{
         e.preventDefault();
         let data={
-            ID= this.state.ID,
+            ID: this.state.ID,
             SID: localStorage.getItem("ID"),
             skill: this.state.skill
         }
         console.log("single skill data", data);
-        axios.post('',data)
+        axios.post('http://localhost:3001/updateSkill',data)
         .then(response=>{
             console.log("Status code:", response.status);
             this.setState({

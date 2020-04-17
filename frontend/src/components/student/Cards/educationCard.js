@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import cookie from "react-cookies";
 import axios from 'axios';
-import SingleEducationDetails from './singleEducationDetails';
+import SingleEducationDetails from './sinigleEducationDetails';
+
+axios.defaults.withCredentials = true;
 
 class EducationCard extends Component{
     constructor(props){

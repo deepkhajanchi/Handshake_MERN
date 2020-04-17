@@ -6,7 +6,6 @@ import BasicDetailsCard from '../student/Cards/basicdetailsCard';
 import CareerObjCard from '../student/Cards/careerObjCard';
 import EducationCard from '../student/Cards/educationCard';
 import ExperienceCard from '../student/Cards/experienceCard';
-import {Link} from 'react-router-dom';
 import cookie from 'react-cookies';
 import {Redirect} from 'react-router';
 import Navbar from './navbar';
@@ -20,12 +19,13 @@ class Studentprofile extends Component{
     }
 render(){
     let redirectVar= null;
-  /* if(!cookie.load("cookie")){
+  if(!cookie.load("SID")){
        redirectVar=<Redirect to="/" />
    }
-   */
+
     return(
         <div>
+        {redirectVar}
             <Navbar/>
                 <div>
                     <div>
@@ -54,9 +54,6 @@ render(){
         </div>
     );
     }
-    //else if(this.state.isLogin === false){
-      //  return(<Redirect to="/" />)
-    //}
 }
 
 

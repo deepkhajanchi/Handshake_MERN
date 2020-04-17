@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CompanyNav from '../companyNav';
+import CompanyNav from './companyNav';
 import axios from 'axios';
 import cookie from "react-cookies";
 import { Link, Redirect } from "react-router-dom";
@@ -91,7 +91,7 @@ class CompanyEvents extends Component {
     render() {
         let event = null, studentsElement = null, eventElement = null, redirectVar = null, errorElement = null;
         // if (!cookie.load('CID')) {
-        //     redirectVar = <Redirect to="/companySignIn" />;
+        //     redirectVar = <Redirect to="/companylogin" />;
         // }
         if (this.state.eventArray.length > 0) {
             if (this.state.studentsFlag) {

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+axios.defaults.withCredentials = true;
+
 class SingleEducationDetails extends Component {
     constructor(props) {
         super(props);

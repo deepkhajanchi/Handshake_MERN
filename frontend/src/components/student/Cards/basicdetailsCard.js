@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import cookie from "react-cookies";
 import axios from 'axios';
+import { connect } from "react-redux";
+import { studentGetBasicDetails, studentUpdateBasicDetails } from '../../../js/actions/profileAction';
 
 class BasicDetailsCard extends Component{
     constructor(props){
@@ -118,7 +120,7 @@ class BasicDetailsCard extends Component{
             <div className="container">
                 <div style={{ width: '1px solid black' }} className='col-md-6'>
                     <div>
-                        <img src={this.state.profilePic} style={{ height: '150px', weight: '100px' }}></img>
+                        <img alt="basicdetailsimage" src={this.state.profilePic} style={{ height: '150px', weight: '100px' }}></img>
                         <form action="http://localhost:3001/updateProfilePic" method="POST" encType='multipart/form-data' >
                             <input style={{ display: "none" }} name='SID' value={cookie.load("SID")}></input>
                             <input type='file' name='profilePic' id='profilePic'></input>
@@ -135,4 +137,12 @@ class BasicDetailsCard extends Component{
     }
 }
 
-export default BasicDetailsCard;
+function mapStateToProps(state) {
+    return {
+        name: state.StudentProfile.name,
+        school: state.StudentProfile.school,
+        city: state.StudentProfile.city
+    }
+}
+
+export default connect(mapStateToProps, {studentGetBasicDetails, studentUpdateBasicDetails})(BasicDetailsCard);

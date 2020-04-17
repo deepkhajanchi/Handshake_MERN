@@ -2,6 +2,8 @@ var express= require("express");
 var bodyParser= require("body-parser");
 var cookieParser= require('cookie-parser');
 var session = require('express-session');
+var multer= require('multer');
+var path= require('path');
 const connectDB= require ('./DB/connection');
 
 connectDB();
@@ -50,21 +52,32 @@ app.use((req, res, next)=> {
 var student_login= require('./API/Student/student_login');
 var student_signup= require('./API/Student/student_signup');
 
-/*
 // company Routing
 var company_login= require('.API/Company/company_login.js');
 var company_signup= require('.API/Company/company_signup.js');
-*/
 
 // student route config
 app.use('/student_login',student_login);
 app.use('/student_signup',student_signup);
 
-/*
 // company route config
 app.use('/company_login',company_login);
 app.use('/company_signup',company_signup);
 
-*/
+const storage = multer.diskStorage({
+    // destination: '/uploads/',
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/')
+    },
+    filename: function (req, file, callback) {
+        callback(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+    }
+});
+
+const upload = multer({
+    storage: storage,
+})
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+
 app.listen(3001);
 console.log("Server is listening on port 3001 ...");

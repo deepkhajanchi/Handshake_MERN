@@ -7,6 +7,9 @@ import cookie from 'react-cookies';
 import {Redirect} from 'react-router';
 import {Link} from 'react-router-dom';
 
+import { studentSignup } from '../../js/actions/loginAction';
+import { connect } from 'react-redux';
+
 class Registerform extends Component {
     //constructor method
     constructor(props){
@@ -86,6 +89,7 @@ class Registerform extends Component {
                 passWord: this.state.passWord,
                // confirmPassword: this.state.confirmPassword
             }
+            this.props.studentSignup(data);
     /*        
             const { passWord,  confirmPassword}=this.state;
             if(passWord !== confirmPassword){
@@ -125,8 +129,12 @@ class Registerform extends Component {
 
     render(){
         let redirectvar=null;
-        if(cookie.load('cookie')){
-            redirectvar= <Redirect to="http://localhost:3000/" />
+        let alertElement=null;
+        if(cookie.load('SID')){
+            redirectvar= <Redirect to="http://localhost:3000/studentlanding" />
+        }
+        if (this.props.isSignedUp != null && !this.props.isSignedUp) {
+            alertElement = <p className='alert alert-danger'>Email is already registered</p>
         }
     return(
         <div>
@@ -211,7 +219,7 @@ class Registerform extends Component {
                                         <div className="form-group string required user_email">
                                             <div className="col-md-12">
                                                 Please use your school email<br/>
-                                            <input onChange={this.emailIDChangeHandler} className="form-control tt-hint" name="emailID" type="email" placeholder="Email" required />
+                                            <input onChange={this.emailIDChangeHandler} className="form-control tt-hint" name="emailID" type="email" placeholder="Email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required />
                                             </div>
                                         </div>
                                     </div>
@@ -231,6 +239,7 @@ class Registerform extends Component {
                                     <div className="col-md-12 margin-bottom">
                                         <button className="btn btn btn-success" type="submit">Create Account</button>
                                     </div>
+                                    {alertElement}
 
                                 </div>
                             </div>
@@ -244,7 +253,11 @@ class Registerform extends Component {
     );
     }
 }
-
+function mapStateToProps(state) {
+    return {
+        isSignedUp: state.Login.isSignedUp
+    };
+}
 
 //export Registerform Component
-export default Registerform;
+export default connect(mapStateToProps,{studentSignup})(Registerform);

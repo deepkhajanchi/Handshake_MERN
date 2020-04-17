@@ -20,18 +20,18 @@ class JobNav extends Component{
             Job Search
         </h2>
         <div className="style__secondary-nav-links___1xumQ">
-            <a href="/jobpostings" className="style__secondary-nav-link___2vnRB style__secondary-nav-link-active___A8hIy">
+            <Link to="/jobpostings" className="style__secondary-nav-link___2vnRB style__secondary-nav-link-active___A8hIy">
                 Job Search
-            </a>
-            <a href="/applications" className="style__secondary-nav-link___2vnRB">
+            </Link>
+            <Link to="/applications" className="style__secondary-nav-link___2vnRB">
                 Applications
-            </a>
-            <a href="/employers" className="style__secondary-nav-link___2vnRB">
+            </Link>
+            <Link to="/employers" className="style__secondary-nav-link___2vnRB">
                 Employers
-            </a>
-            <a href="/oncampus" className="style__secondary-nav-link___2vnRB">
+            </Link>
+            <Link to="/oncampus" className="style__secondary-nav-link___2vnRB">
                 On-Campus Interviews
-            </a>
+            </Link>
         </div>
     </div>
 </div>

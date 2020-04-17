@@ -2,11 +2,11 @@ var express= require("express");
 var mongoose= require("mongoose");
 const bcrypt= require('bcrypt-nodejs');
 const jwt= require('jsonwebtoken');
-var router= express.Router();
+var app= express();
 
 const Company= require('../../DB/CompanySchema');
 
-router.post("/companysignup", (req, res)=>{
+app.post("/companysignup", (req, res)=>{
     Company.find({
         email: req.body.email
     }).exec()
@@ -49,4 +49,4 @@ router.post("/companysignup", (req, res)=>{
     });
 });
 
-module.exports= router;
+module.exports= app;

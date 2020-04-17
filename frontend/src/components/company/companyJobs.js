@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CompanyNav from '../companyNav';
+import CompanyNav from './companyNav';
 import axios from 'axios';
 import cookie from "react-cookies";
 import { Link, Redirect } from "react-router-dom";
@@ -111,7 +111,7 @@ class CompanyJobs extends Component {
     render() {
         let jobElement = null, jobOrForm = null, studentsElement = null, redirectVar = null, errorElement = null;
         if (!cookie.load('CID')) {
-            redirectVar = <Redirect to="/companySignIn" />;
+            redirectVar = <Redirect to="/companylogin" />;
         }
         if (this.state.jobsArray.length > 0) {
             jobElement = this.state.jobsArray.map(job => {

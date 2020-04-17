@@ -81,7 +81,7 @@ class CompanyProfile extends Component {
         let contactForm = null;
         let redirectVar = null;
         if (!cookie.load('CID')) {
-            redirectVar = <Redirect to="/companySignIn" />;
+            redirectVar = <Redirect to="/companylogin" />;
         }
         if (this.state.contactFlag) {
             contactForm =
@@ -150,7 +150,7 @@ class CompanyProfile extends Component {
 
                         </div>
                         <div style={{ marginTop: '6px', textAlign: 'left' }} className='col-7'>
-                            {contactOrForm}
+                            {contactForm}
                         </div>
                     </div>
                 </div>

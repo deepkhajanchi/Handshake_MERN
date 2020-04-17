@@ -6,7 +6,6 @@ class SingleExperience extends Component {
         super(props);
         this.state = {
             ID: this.props.item.ID,
-            SID: localStorage.getItem("ID"),
             companyName: this.props.item.companyName,
             title: this.props.item.title,
             location: this.props.item.location,

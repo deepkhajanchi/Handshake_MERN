@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import cookie from "react-cookies";
 import axios from 'axios';
+import { studentGetContactInfo, studentUpdateContactInfo } from '../../../js/actions/profileAction';
+import { connect } from "react-redux";
+
+
+axios.defaults.withCredentials = true;
 
 class UserInfoCard extends Component{
     constructor(props){
@@ -14,10 +19,8 @@ class UserInfoCard extends Component{
     }
 
     componentDidMount(){
-        this.props.studentGetUserInfo();
-        let data= {
-            cookie: cookie.load("cookie")
-        }
+        this.props.studentGetContactInfo();
+/*
         axios(
             {
                 url: 'https://localhost:3001/getProfilePic',
@@ -30,6 +33,7 @@ class UserInfoCard extends Component{
                 profilePic: response.data
             })
         })
+        */
     }
     handleEdit=()=>{
         this.setState({
@@ -46,7 +50,7 @@ class UserInfoCard extends Component{
         this.props.studentUpdateContactInfo({
             SID: cookie.load("SID"),
             email: document.getElementById("email").value,
-            phone: document.getElementById("phone").value
+            phone: document.getEGetUserlementById("phone").value
         });
         this.setState({
             editFlag: false
@@ -102,5 +106,10 @@ class UserInfoCard extends Component{
     }
 }
 
-
-export default UserInfoCard;
+function mapStateToProps(state) {
+    return {
+        email: state.StudentProfile.email,
+        phone: state.StudentProfile.phone
+    }
+}
+export default connect(mapStateToProps,{ studentGetContactInfo, studentUpdateContactInfo})(UserInfoCard);

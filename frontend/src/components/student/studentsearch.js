@@ -1,11 +1,7 @@
 import React, {Component} from 'react';
 import '../../Styles/studentsearch.css';
-import {Link} from 'react-router-dom';
-import cookie, { load } from 'react-cookies';
-import {Redirect} from 'react-router';
 import Navbar from './navbar';
 import axios from 'axios';
-
 
 class Studentsearch extends Component{
     constructor(props){

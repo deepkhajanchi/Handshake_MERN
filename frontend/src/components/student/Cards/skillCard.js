@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SingleSkill from './singleSkill';
-import cookie from "react-cookies";
-import axios from 'axios';
+import { connect } from "react-redux";
+import { studentGetSkills } from "../../../js/actions/profileAction";
 
 class SkillCard extends Component{
     constructor(props){
@@ -51,13 +51,14 @@ class SkillCard extends Component{
         }
     }
     handleSave = (e) => {
-        console.log('skill sent', this.state.skill)
+        console.log('skill is sent', this.state.skill)
         let data = {
             ID: localStorage.getItem("ID"),
             skill: this.state.skill
         }
         console.log('pressed save button', data)
     }
+
     render() {
         let skillElement = null;
         if (this.state.addFlag === true) {
@@ -103,4 +104,4 @@ class SkillCard extends Component{
 
 }
 
-export default SkillCard;
+export default connect (null,{studentGetSkills})(SkillCard);

@@ -4,10 +4,10 @@ var jwt=require('jsonwebtoken');
 var passport= require('passport');
 var bcrypt= require('bcrypt-nodejs');
 
-var router= express.Router();
+var app= express();
 const Company= require('../../DB/CompanySchema');
 
-router.post('/companylogin',(req, res)=>{
+app.post('/companylogin',(req, res)=>{
     var email= req.body.email;
     var password= req.body.password;
 
@@ -31,4 +31,4 @@ router.post('/companylogin',(req, res)=>{
     });
 });
 
-module.exports= router;
+module.exports= app;

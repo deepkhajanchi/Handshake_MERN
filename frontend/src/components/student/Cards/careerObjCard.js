@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import cookie from "react-cookies";
-import axios from 'axios';
+import { connect } from "react-redux";
+import { studentGetCareerObjective, studentUpdateCareerObjective } from "../../../js/actions/profileAction";
 
 class CareerObjCard extends Component{
     constructor(props){
@@ -77,4 +78,10 @@ class CareerObjCard extends Component{
 
 }
 
-export default CareerObjCard;
+function mapStateToProps(state) {
+    return {
+        careerObjective: state.StudentProfile.careerObjective
+    }
+}
+
+export default connect(mapStateToProps, {studentGetCareerObjective, studentUpdateCareerObjective})(CareerObjCard);

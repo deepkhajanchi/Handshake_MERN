@@ -4,7 +4,6 @@ import Logo from '../../Images/handshake_loginlogo.svg';
 import Avatar from 'react-avatar';
 import {Link} from 'react-router-dom';
 import cookie from 'react-cookies';
-import {Redirect} from 'react-router';
 
 class Navbar extends Component{
     constructor(props){
@@ -13,13 +12,16 @@ class Navbar extends Component{
       }
       
      handleLogout = () => {
-        cookie.remove('cookie', { path: '/' })
+        cookie.remove('SID', { path: '/' });
+        cookie.remove('name', { path: '/' });
+        cookie.remove('token', { path: '/' });
     }
 
       render(){
         let redirectVar=null;
       return(
         <div className= "layout-wide-dashboard">
+          {redirectVar}
           <div data-turbolinks-permanent="" id="permament-topbar">
             <div data-react-class="StudentTopbarWhiteRoot">
               <div>
@@ -30,7 +32,7 @@ class Navbar extends Component{
                           <div className="styl__container___15r1p styl__large___3HKaH styl__fitted___2ndoo" data-hook="container">
                             <div className="styl__content___oQxb0">
                               <div className="styl__logo-container___3_yW2">
-                                <a href="/studentlanding" aria-label="Homepage">
+                                <Link to="/studentlanding" aria-label="Homepage">
                                 <img id= "logo-icon" className="styl__logo-icon___38kkg" alt='Handshake logo' viewBox="0 0 80.1 96.1" src={Logo} width="32" height="32"/>
                                     <title>
                                       Handshake
@@ -47,7 +49,7 @@ class Navbar extends Component{
                                         13.6c0 7.6 6.1 13.6 13.6 13.6zM14.3 28.6c7.9 0 14.3-6.4 14.3-14.3S22.2
                                         0 14.3 0 0 6.4 0 14.3s6.4 14.3 14.3 14.3z">
                                     </path>
-                                </a>
+                                </Link>
                                 <div className="styl__search-container___2WuPw">
                                   <div className="styl__search___ttQsV" data-hook="student-topbar-global-search">
                                     <div className="Select is-clearable is-searchable Select--single">
@@ -75,43 +77,43 @@ class Navbar extends Component{
                                   </div>
                                 </div>
 
-                                <a href="/jobpostings" className="styl__nav-link___2JgVu styl__nav-link___3jrqE">
+                                <Link to="/jobpostings" className="styl__nav-link___2JgVu styl__nav-link___3jrqE">
                                 <span className="spanclass">
                                     <span>Jobs</span>
                                       <div data-hook="badge" className="styl__badge___2eGTL styl__badge___PwOxT">
                                         
                                       </div>
                                   </span>
-                                </a>
+                                </Link>
 
-                                <a href="/events" className="styl__nav-link___2JgVu styl__nav-link___3jrqE">
+                                <Link to="/events" className="styl__nav-link___2JgVu styl__nav-link___3jrqE">
                                   <span className="spanclass">
                                     <span>Events</span>
                                     <div data-hook="badge" className="styl__badge___2eGTL styl__badge___PwOxT">
                                         
                                       </div>
                                   </span>
-                                </a>
+                                </Link>
 
-                                <a href="/studentsearch" className="styl__nav-link___2JgVu styl__nav-link___3jrqE">
+                                <Link to="/studentsearch" className="styl__nav-link___2JgVu styl__nav-link___3jrqE">
                                   <span className="spanclass">
                                     <span>
                                       Students
                                     </span>
                                   </span>
-                                </a>
+                                </Link>
 
-                                <a href="/messages" className="styl__nav-link___2JgVu styl__nav-link___3jrqE">
+                                <Link to="/messages" className="styl__nav-link___2JgVu styl__nav-link___3jrqE">
                                   <span data-hook="student-topbar-messages-link">
                                     <span className="spanclass">
                                       Messages
                                     </span>
                                   </span>
-                                </a>
+                                </Link>
 
                                 <div className="dropdown pull-right styl__dropdown___3v4V2">
                                  
-                                  <button className="account-dropdown-nav" aria-label="navigation modal button" aria-haspopup="true" aria-expanded="false" className="styl__dropdown-button___1ECNT-nav dropdown-toggle" data-toggle="dropdown" type="button">
+                                  <button className="account-dropdown-nav styl__dropdown-button___1ECNT-nav dropdown-toggle" aria-label="navigation modal button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" type="button">
                                     
                                       <Avatar size="50px" round={true} name="MT"/>
                                     

@@ -4,7 +4,6 @@ import Logo from '../../Images/handshake_loginlogo.svg';
 import Avatar from 'react-avatar';
 import {Link} from 'react-router-dom';
 import cookie from 'react-cookies';
-import {Redirect} from 'react-router';
 
 class CompanyNav extends Component{
     constructor(props){
@@ -26,7 +25,9 @@ class CompanyNav extends Component{
       render(){
         let redirectVar=null;
       return(
+        
         <div className= "layout-wide-dashboard">
+          {redirectVar}
           <div data-turbolinks-permanent="" id="permament-topbar">
             <div data-react-class="StudentTopbarWhiteRoot">
               <div>
@@ -82,43 +83,43 @@ class CompanyNav extends Component{
                                   </div>
                                 </div>
 
-                                <a href="/companyJobs" className="styl__nav-link___2JgVu styl__nav-link___3jrqE">
+                                <Link to="/companyJobs" className="styl__nav-link___2JgVu styl__nav-link___3jrqE">
                                 <span className="spanclass">
                                     <span>Jobs</span>
                                       <div data-hook="badge" className="styl__badge___2eGTL styl__badge___PwOxT">
                                         
                                       </div>
                                   </span>
-                                </a>
+                                </Link>
 
-                                <a href="/companyEvents" className="styl__nav-link___2JgVu styl__nav-link___3jrqE">
+                                <Link to="/companyEvents" className="styl__nav-link___2JgVu styl__nav-link___3jrqE">
                                   <span className="spanclass">
                                     <span>Events</span>
                                     <div data-hook="badge" className="styl__badge___2eGTL styl__badge___PwOxT">
                                         
                                       </div>
                                   </span>
-                                </a>
+                                </Link>
 
-                                <a href="/companyStudents" className="styl__nav-link___2JgVu styl__nav-link___3jrqE">
+                                <Link to="/companyStudents" className="styl__nav-link___2JgVu styl__nav-link___3jrqE">
                                   <span className="spanclass">
                                     <span>
                                       Students
                                     </span>
                                   </span>
-                                </a>
+                                </Link>
 
-                                <a href="/messages" className="styl__nav-link___2JgVu styl__nav-link___3jrqE">
+                                <Link to="/messages" className="styl__nav-link___2JgVu styl__nav-link___3jrqE">
                                   <span data-hook="student-topbar-messages-link">
                                     <span className="spanclass">
                                       Messages
                                     </span>
                                   </span>
-                                </a>
+                                </Link>
 
                                 <div className="dropdown pull-right styl__dropdown___3v4V2">
                                  
-                                  <button className="account-dropdown-nav" aria-label="navigation modal button" aria-haspopup="true" aria-expanded="false" className="styl__dropdown-button___1ECNT-nav dropdown-toggle" data-toggle="dropdown" type="button">
+                                  <button className="account-dropdown-nav styl__dropdown-button___1ECNT-nav dropdown-toggle" aria-label="navigation modal button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" type="button">
                                     
                                       <Avatar size="50px" round={true} name="Company"/>
                                     

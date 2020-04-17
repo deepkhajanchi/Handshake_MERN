@@ -4,21 +4,22 @@ import Logo1 from '../../Images/handshake_loginlogo.svg';
 import Logo3 from '../../Images/handshake_logindesign1.svg';
 import Logo5 from '../../Images/handshake_logindesign.svg';
 import {Link} from 'react-router-dom';
-import axios from 'axios';
 import cookie from 'react-cookies';
 import {Redirect} from 'react-router';
+import { connect } from "react-redux";
+import { companyLogin } from '../../js/actions/loginAction';
 
 class CompanyLogin extends Component{
     constructor(props){
         super(props);
         this.state={
-          comp_emailID: "",
-          comp_passWord: "",
+          email: "",
+          password: "",
           authFlag: false
         }
 
-        this.emailIDChangeHandler= this.emailIDChangeHandler.bind(this);
-      this.passWordChangeHandler= this.passWordChangeHandler.bind(this);
+      this.emailChangeHandler= this.emailChangeHandler.bind(this);
+      this.passwordChangeHandler= this.passwordChangeHandler.bind(this);
       this.submitLogin= this.submitLogin.bind(this);
     }
     componentWillMount(){
@@ -29,27 +30,29 @@ class CompanyLogin extends Component{
       )
     }
 
-    emailIDChangeHandler = (e)=>{
+    emailChangeHandler = (e)=>{
         this.setState({
-            emailID: e.target.value
+            email: e.target.value
         })
     }
 
-    passWordChangeHandler = (e)=>{
+    passwordChangeHandler = (e)=>{
         this.setState({
-            passWord: e.target.value
+            password: e.target.value
         })
     }
 
     submitLogin=(e)=>{
-      var headers= new Headers();
+     // var headers= new Headers();
       //prevent page from refresh
       e.preventDefault();
-     // if(this.state.emailID && this.state.passWord){
+     // if(this.state.email && this.state.password){
         const data={
-          comp_emailID: this.state.comp_emailID,
-          comp_passWord: this.state.comp_passWord
+          email: this.state.email,
+          password: this.state.password
         }
+        this.props.companyLogin(data);
+        /*
         axios.default.withCredentials=true;
         axios.post('http://localhost:3001/API/Company/company_login',data)
         .then(response=>{
@@ -64,12 +67,17 @@ class CompanyLogin extends Component{
               })
             }
         });
+        */
     }
     render(){
         let redirectVar=null;
-        if(cookie.load('cookie')|| sessionStorage.getItem('user')){
-          redirectVar=<Redirect to="/comp_landingpage" />
+        let alertElement=null;
+        if(cookie.load('CID')){
+          redirectVar=<Redirect to="/companyprofile" />
         }
+        if(this.props.isLoggedIn != null && !this.props.isLoggedIn) {
+          alertElement = <p className='alert alert-danger'>{this.state.msg}</p>
+      }
         return(
             <div className="login-v2-container">
               {redirectVar}
@@ -81,7 +89,7 @@ class CompanyLogin extends Component{
                          <div className="form-group string required user_email">
                              <div className="col-md-12">
                     
-                                 <input onChange={this.emailIDChangeHandler} className="form-control tt-hint" type="email" placeholder="Email" required />
+                                 <input onChange={this.emailChangeHandler} className="form-control tt-hint" name="email" type="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required />
                               </div>
                           </div>
                 </div>
@@ -90,7 +98,7 @@ class CompanyLogin extends Component{
                       <label>Password</label>
                             <div className="form-group string required user_email">
                               <div className="col-md-12">
-                                 <input onChange={this.passWordChangeHandler} className="form-control tt-hint" type="password" placeholder="Password" required />
+                                 <input onChange={this.passwordChangeHandler} className="form-control tt-hint" name="password" type="password" placeholder="Password" required />
                               </div>
                             </div>
                 </div>
@@ -99,6 +107,7 @@ class CompanyLogin extends Component{
                 <div className="sso-button">
                       <button onClick={this.submitLogin} className="btn btn btn-success"> Sign In</button>
                 </div>
+                {alertElement}
                 <div><h4>{this.state.message}</h4></div>
                 </div>
       
@@ -141,5 +150,11 @@ class CompanyLogin extends Component{
           );
           }
         }
+
+        function mapStateToProps(state) {
+          return {
+              isLoggedIn: state.Login.isLoggedIn
+          };
+      }
       //export Loginform Component
-      export default CompanyLogin;
+      export default connect(mapStateToProps, { companyLogin })(CompanyLogin);

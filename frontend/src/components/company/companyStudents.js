@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CompanyNav from '../Navbar/companyNav';
+import CompanyNav from './companyNav';
 import axios from 'axios';
 import { Link } from "react-router-dom";
 
@@ -48,7 +48,7 @@ class CompanyStudents extends Component {
                 skillFlag: true,
                 filteredStudents: temp.filter(student => {
                     if (student.skills) {
-                        return (student.skills.replace(',', '').toLowerCase().includes(e.target.value.toLowerCase()))
+                        return (student.skills.replace(',', '').toLowerCase().includes(e.target.value.toLowerCase()));
                     }
                 })
             })

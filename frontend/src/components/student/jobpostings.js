@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import cookie from 'react-cookies';
-import {Redirect} from 'react-router';
+import axios from 'axios';
 import {Dropdown} from 'react-bootstrap';
 
 import '../../Styles/jobposting.css';
@@ -83,7 +81,7 @@ class Studentjobs extends Component{
         } else {
             this.setState({
                 partTimeFlag: false,
-                filteredJobs: this.state.filteredJobs.filter(job => { return (job.category != 'Part Time') })
+                filteredJobs: this.state.filteredJobs.filter(job => { return (job.category !== 'Part Time') })
             })
         }
 
@@ -97,7 +95,7 @@ class Studentjobs extends Component{
         } else {
             this.setState({
                 onCampusFlag: false,
-                filteredJobs: this.state.filteredJobs.filter(job => { return (job.category != 'On Campus') })
+                filteredJobs: this.state.filteredJobs.filter(job => { return (job.category !== 'On Campus') })
             })
         }
     }

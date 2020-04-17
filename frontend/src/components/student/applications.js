@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import cookie from 'react-cookies';
-import {Redirect} from 'react-router';
+import axios from 'axios';
 import '../../Styles/applications.css';
 import Navbar from './navbar';
 import JobNav from './jobnav';
@@ -46,14 +44,7 @@ class Applications extends Component{
         }
     }
 
-    render(){ 
-        return(
-            <div>
-            <Navbar/>
-            <JobNav/>
-            </div>
-        )}
-    render(){
+    render(){     
         let appliedJobsElement = null;
         if (!this.state.reviewedFlag) {
             console.log('reviewd flag', this.state.reviewedFlag)
@@ -71,7 +62,6 @@ class Applications extends Component{
                 )
             })
         } else {
-
             console.log('reviewd flag true', this.state.reviewedFlag)
             appliedJobsElement = this.state.filteredJobs.map(job => {
                 return (
@@ -87,21 +77,26 @@ class Applications extends Component{
                 )
             })
         }
+   
 
         return (
-            <div className="container">
-                <button className='btn btn-default' onClick={this.handlePending}>Pending</button>
-                <button className='btn btn-default' onClick={this.handleReviewed}>Reviewed</button>
-                <button className='btn btn-default' onClick={this.handleDeclined}>Declined</button>
-                <table style={{ marginTop: '15px' }} className="table">
-                    <tbody>
-                        {appliedJobsElement}
-                    </tbody>
-                </table>
+            <div>
+                <Navbar/>
+                <JobNav/>
+        
+                <div className="container">
+                    <button className='btn btn-default' onClick={this.handlePending}>Pending</button>
+                    <button className='btn btn-default' onClick={this.handleReviewed}>Reviewed</button>
+                    <button className='btn btn-default' onClick={this.handleDeclined}>Declined</button>
+                    <table style={{ marginTop: '15px' }} className="table">
+                        <tbody>
+                            {appliedJobsElement}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         );
-    }
-
+        }
 }
 
 export default Applications;
